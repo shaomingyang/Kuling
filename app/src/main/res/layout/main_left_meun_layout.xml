@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/yo_blue"
@@ -13,12 +14,13 @@
         android:orientation="vertical"
         android:paddingTop="20dp">
 
-        <com.ming.shao.kuling.widget.CircularImageView
+        <com.ming.shao.kuling.widget.CircleImageView
             android:id="@+id/cycle_head_img"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_margin="10dp"
-            android:src="@mipmap/ic_launcher" />
+            tool:border_color="@android:color/white"
+            tool:border_width="1dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -32,16 +34,31 @@
         android:layout_height="10dp"
         android:background="#F0F0F0" />
 
-    <Button
-        android:id="@+id/caream_but"
+    <com.ming.shao.kuling.widget.ElasticScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="拍照" />
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
 
-    <Button
-        android:id="@+id/my_photo_but"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="自定义相册" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/caream_but"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="拍照" />
+
+            <Button
+                android:id="@+id/my_photo_but"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="自定义相册" />
+        </LinearLayout>
+
+    </com.ming.shao.kuling.widget.ElasticScrollView>
+
 
 </LinearLayout>

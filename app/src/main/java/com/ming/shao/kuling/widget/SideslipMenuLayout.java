@@ -160,7 +160,9 @@ public class SideslipMenuLayout extends HorizontalScrollView {
 //        ViewHelper.setScaleY(menu, leftScale);
 //        ViewHelper.setScaleX(content, rightScale);
 //        ViewHelper.setScaleY(content, rightScale);
+        //设置右边内容透明度逐渐透明
         ViewHelper.setAlpha(content, 0.6f + 0.4f * (scale));
+        //设置内容的位置
         ViewHelper.setPivotX(content, 0);
         ViewHelper.setPivotY(content, content.getHeight() / 2);
     }

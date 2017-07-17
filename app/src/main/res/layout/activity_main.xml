@@ -14,10 +14,9 @@
             android:layout_height="match_parent"
             android:background="#000000"
             android:orientation="horizontal">
-
-            <include layout="@layout/main_left_meun_layout"
-                />
-
+            <!--左边菜单-->
+            <include layout="@layout/main_left_meun_layout" />
+            <!--右边内容-->
             <include layout="@layout/main_right_content_layout" />
         </LinearLayout>
 

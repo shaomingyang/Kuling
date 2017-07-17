@@ -1,6 +1,8 @@
 package com.ming.shao.kuling;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -13,6 +15,7 @@ import com.ming.shao.kuling.ImagePicker.callback.CallbackForCamera;
 import com.ming.shao.kuling.ImagePicker.callback.CallbackForGallery;
 import com.ming.shao.kuling.ImagePicker.callback.CallbackForImagePicker;
 import com.ming.shao.kuling.ui.ActivityCyleOne;
+import com.ming.shao.kuling.widget.CircleImageView;
 
 import java.util.List;
 
@@ -24,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     ImagePicker imagePicker;
     Button activity_but;
 
+    CircleImageView circleImageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
         photo_but = (Button) findViewById(R.id.photo_but);
         my_photo_but = (Button) findViewById(R.id.my_photo_but);
         activity_but = (Button) findViewById(R.id.activity_but);
+        circleImageView = (CircleImageView) findViewById(R.id.cycle_head_img);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.approot_bg);
+        circleImageView.setImageBitmap(bitmap);
         caream.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
