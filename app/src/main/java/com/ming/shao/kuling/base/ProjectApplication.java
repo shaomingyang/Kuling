@@ -3,7 +3,12 @@ package com.ming.shao.kuling.base;
 import android.app.Application;
 import android.content.Context;
 import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.ming.shao.kuling.R;
 
 /**
  * Created by smy on 2017/7/5 0005.
@@ -54,17 +59,17 @@ public class ProjectApplication extends Application {
         screenHeight = dm.heightPixels;
     }
 
-//    public static void showToast(String msg) {
-//        if (null == mToast) {
-//            View toastView = LayoutInflater.from(mInstance).inflate(R.layout.view_toast, null);
-//            mToast = new Toast(mInstance);
-//            mToast.setView(toastView);
-//            TextView toastContent = (TextView) toastView.findViewById(R.id.message);
-//            toastContent.setText(msg);
-//        } else {
-//            TextView toastContent = (TextView) (mToast.getView().findViewById(R.id.message));
-//            toastContent.setText(msg);
-//        }
-//        mToast.show();
-//    }
+    public static void showToast(String msg) {
+        if (null == mToast) {
+            View toastView = LayoutInflater.from(mInstance).inflate(R.layout.view_toast, null);
+            mToast = new Toast(mInstance);
+            mToast.setView(toastView);
+            TextView toastContent = (TextView) toastView.findViewById(R.id.message);
+            toastContent.setText(msg);
+        } else {
+            TextView toastContent = (TextView) (mToast.getView().findViewById(R.id.message));
+            toastContent.setText(msg);
+        }
+        mToast.show();
+    }
 }
