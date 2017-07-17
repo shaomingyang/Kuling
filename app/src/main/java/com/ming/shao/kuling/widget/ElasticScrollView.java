@@ -20,6 +20,7 @@ public class ElasticScrollView extends ScrollView {
     //保存正常时候的位置
     private Rect normal = new Rect();
     private int mScaledTouchSlop;
+    
 
     public ElasticScrollView(Context context) {
         super(context);
