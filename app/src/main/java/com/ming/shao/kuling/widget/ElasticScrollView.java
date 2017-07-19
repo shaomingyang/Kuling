@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
@@ -20,7 +19,7 @@ public class ElasticScrollView extends ScrollView {
     //保存正常时候的位置
     private Rect normal = new Rect();
     private int mScaledTouchSlop;
-    
+
 
     public ElasticScrollView(Context context) {
         super(context);
@@ -59,31 +58,32 @@ public class ElasticScrollView extends ScrollView {
 
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                lastY = 0;
                 break;
             case MotionEvent.ACTION_MOVE:
-                Log.e("ElasticScrollView", "====================++");
-                Log.e("ElasticScrollView", "lastY" + lastY);
+                final float preY = lastY == 0 ? ev.getY() : lastY;
                 movY = ev.getY();
-                Log.e("ElasticScrollView", "====================");
-                Log.e("ElasticScrollView", "movY" + movY);
-                int distans = (int) (lastY - movY);
-                Log.e("ElasticScrollView", "====================++");
-                Log.e("ElasticScrollView", "distans" + distans);
+                int distans = (int) (preY - movY);
+
                 if (normal.isEmpty()) {
                     normal.set(inner.getLeft(), inner.getTop(), inner.getRight(), inner.getBottom());
                 }
-                inner.layout(inner.getLeft(), inner.getTop() - distans / 2, inner.getRight(), inner.getBottom() - distans / 2);
+                inner.layout(inner.getLeft(), inner.getTop() - distans / 4, inner.getRight(), inner.getBottom() - distans / 4);
 
                 lastY = movY;
+
                 break;
             case MotionEvent.ACTION_UP:
+                lastY = 0;
                 //获取正常的位置 设置原来的位置
                 inner.layout(normal.left, normal.top, normal.right, normal.bottom);
-                return true;
+                break;
         }
 
         return super.onTouchEvent(ev);
 
+
     }
+
 
 }

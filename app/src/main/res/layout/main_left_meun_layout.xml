@@ -56,6 +56,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="自定义相册" />
+            <Button
+                android:id="@+id/photo_but"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="相册" />
         </LinearLayout>
 
     </com.ming.shao.kuling.widget.ElasticScrollView>

@@ -6,16 +6,20 @@
     android:orientation="vertical">
 
 
-    <Button
-        android:id="@+id/photo_but"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/content_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="相册" />
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-    <Button
-        android:id="@+id/activity_but"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="activity生命周期" />
+        android:layout_height="1px"
+        android:background="#E0E0E0" />
+
+    <com.ming.shao.kuling.widget.SlidingTabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
 
 </LinearLayout>

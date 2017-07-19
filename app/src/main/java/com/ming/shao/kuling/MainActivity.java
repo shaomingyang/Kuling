@@ -3,8 +3,7 @@ package com.ming.shao.kuling;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,32 +13,50 @@ import com.ming.shao.kuling.ImagePicker.ImagePicker;
 import com.ming.shao.kuling.ImagePicker.callback.CallbackForCamera;
 import com.ming.shao.kuling.ImagePicker.callback.CallbackForGallery;
 import com.ming.shao.kuling.ImagePicker.callback.CallbackForImagePicker;
-import com.ming.shao.kuling.ui.ActivityCyleOne;
+import com.ming.shao.kuling.base.BaseActivity;
+import com.ming.shao.kuling.ui.fragment.adapter.HomeFragmentAdapter;
 import com.ming.shao.kuling.widget.CircleImageView;
+import com.ming.shao.kuling.widget.SlidingTabLayout;
 
+import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
     Button caream;
     Button photo_but;
     Button my_photo_but;
     ImagePicker imagePicker;
-    Button activity_but;
+    SlidingTabLayout tab_layout;
+    ViewPager mViewPage;
+    HomeFragmentAdapter homeFragmentAdapter;
 
     CircleImageView circleImageView;
+    private List<String> mTabEntitys = Arrays.asList("首页", "消息", "更多");
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Log.i(TAG, "onCreate::The activity is being created.");
+    public int getContentView() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initViews() {
         imagePicker = new ImagePicker(this);
         setContentView(R.layout.activity_main);
         caream = (Button) findViewById(R.id.caream_but);
         photo_but = (Button) findViewById(R.id.photo_but);
         my_photo_but = (Button) findViewById(R.id.my_photo_but);
-        activity_but = (Button) findViewById(R.id.activity_but);
+        tab_layout = (SlidingTabLayout) findViewById(R.id.tab_layout);
+
+        tab_layout.setTabData(mTabEntitys);
+        homeFragmentAdapter = new HomeFragmentAdapter(getSupportFragmentManager(), mTabEntitys);
+        mViewPage = (ViewPager) findViewById(R.id.content_view);
+        mViewPage.setAdapter(homeFragmentAdapter);
+        mViewPage.setCurrentItem(0);
+        tab_layout.setupWithViewPager(mViewPage);
+        tab_layout.setCurrentTab(0);
         circleImageView = (CircleImageView) findViewById(R.id.cycle_head_img);
+
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.approot_bg);
         circleImageView.setImageBitmap(bitmap);
         caream.setOnClickListener(new View.OnClickListener() {
@@ -102,13 +119,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        activity_but.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ActivityCyleOne.class));
-            }
-        });
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
