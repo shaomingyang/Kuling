@@ -3,7 +3,6 @@ package com.ming.shao.kuling;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +15,7 @@ import com.ming.shao.kuling.ImagePicker.callback.CallbackForImagePicker;
 import com.ming.shao.kuling.base.BaseActivity;
 import com.ming.shao.kuling.ui.fragment.adapter.HomeFragmentAdapter;
 import com.ming.shao.kuling.widget.CircleImageView;
+import com.ming.shao.kuling.widget.CustomViewPager;
 import com.ming.shao.kuling.widget.SlidingTabLayout;
 
 import java.util.Arrays;
@@ -28,7 +28,7 @@ public class MainActivity extends BaseActivity {
     Button my_photo_but;
     ImagePicker imagePicker;
     SlidingTabLayout tab_layout;
-    ViewPager mViewPage;
+    CustomViewPager mViewPage;
     HomeFragmentAdapter homeFragmentAdapter;
 
     CircleImageView circleImageView;
@@ -50,7 +50,7 @@ public class MainActivity extends BaseActivity {
 
         tab_layout.setTabData(mTabEntitys);
         homeFragmentAdapter = new HomeFragmentAdapter(getSupportFragmentManager(), mTabEntitys);
-        mViewPage = (ViewPager) findViewById(R.id.content_view);
+        mViewPage = (CustomViewPager) findViewById(R.id.content_view);
         mViewPage.setAdapter(homeFragmentAdapter);
         mViewPage.setCurrentItem(0);
         tab_layout.setupWithViewPager(mViewPage);
